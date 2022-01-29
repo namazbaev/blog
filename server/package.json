@@ -1,0 +1,11 @@
+{
+  "name": "blog-site",
+  "version": "1.0.0",
+  "description": "This is blog site",
+  "main": "index.js",
+  "author": "Shakxzod",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
