@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Select from 'react-select';
 
 const Title = styled.h1`
     margin: 0;
@@ -54,7 +53,6 @@ const Input = styled.input`
     box-sizing: border-box;
     border-radius: 5px;
     transition: all 0.3s ease;
-    /* border-color: ${({ error }) => error ? "#ff2424" : '#4040f0'}; */
     &:focus {
         border-color: #4040f0;
         outline: none;
@@ -73,57 +71,6 @@ const Input = styled.input`
         padding: 8px;
         font-size: 12px;
         height: 30px;
-    }
-`
-const TextArea = styled.textarea`
-    height: 220px;
-    width: 100%;
-    padding: 15px;
-    background: #FFFFFF;
-    border: 2px solid #E0E0E0;
-    box-sizing: border-box;
-    border-radius: 5px;
-    font-size: 16px;
-    &:focus {
-        border-color: #4040f0;
-        outline: none;
-    }
-    @media (max-width: 1200px) {
-        height: 200px;
-        padding: 14px;
-        width: 100%;
-    }
-    @media (max-width: 992px) {
-        height: 180px;
-        padding: 14px;
-        width: 100%;
-    }
-    @media (max-width: 768px) {
-        width: 100%;
-        height: 140px;
-        padding: 10px;
-        font-size: 14px;
-    }
-    @media (max-width: 600px) {
-        width: 100%;
-        height: 80px;
-        padding: 10px;
-    }
-`
-const MultipleSelect = styled(Select)`
-    /* height: 80px; */
-    font-size: 16px;
-    @media (max-width: 1200px) {
-        font-size: 19px;
-    }
-    @media (max-width: 992px) {
-        font-size: 16px;
-    }
-    @media (max-width: 768px) {
-        font-size: 14px;
-    }
-    @media (max-width: 600px) {
-        font-size: 12px;
     }
 `
 const SubmitButton = styled.button`
@@ -170,4 +117,4 @@ const SubmitButton = styled.button`
         font-size: 12px;
     }
 `
-export { Title, Label, Input, TextArea, MultipleSelect, SubmitButton }
+export { Title, Label, Input, SubmitButton }

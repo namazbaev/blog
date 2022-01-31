@@ -2,12 +2,18 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     font-family: Heebo;
-    padding: 160px 235px 50px 235px;
-    @media (max-width: 768px) {
-        padding: 80px 18px 50px 18px;
+    padding: 100px 235px 10px 235px;    
+    @media (max-width: 1200px) {
+        padding: 120px 80px 10px 80px;
     }
     @media (max-width: 992px) {
-        padding: 120px 80px 50px 80px;
+        padding: 100px 50px 10px 50px;
+    }
+    @media (max-width: 768px) {
+        padding: 60px 30px 10px 30px;
+    }
+    @media (max-width: 600px) {
+        padding: 40px 25px 10px 25px;
     }
 `
 const HeadWrapper = styled.div`
@@ -18,6 +24,7 @@ const Title = styled.h1`
     font-weight: bold;
     font-size: 44px;
     line-height: 60px;
+    margin: 0;
      @media (max-width: 768px) {
         margin: 0;
         font-size: 30px;
@@ -74,17 +81,26 @@ const BlogItem = styled.li`
 `
 const BlogItemTitle = styled.h3`
     margin: 0;
-    color: #21243D;
+    color: #363963;
     font-weight: 500;
     font-size: 30px;
-    line-height: 44px;
-    @media (max-width: 768px) {
-        font-size: 26px;
-        line-height: 38px;
+    line-height: 35px;
+    transition: all 0.3s linear;
+    &:hover {
+        cursor: pointer;
+        color: #000000;
     }
     @media (max-width: 992px) {
         font-size: 28px;
-        line-height: 40px;
+        line-height: 32px;
+    }
+    @media (max-width: 768px) {
+        font-size: 26px;
+        line-height: 28px;
+    }
+    @media (max-width: 600px) {
+        font-size: 22px;
+        line-height: 22px;
     }
 `
 const BlogItemHead = styled.div`
@@ -93,15 +109,20 @@ const BlogItemHead = styled.div`
     align-items: center;
     font-size: 20px;
     line-height: 29px;
+    @media (max-width: 992px) {
+        margin: 14px 0 24px;
+        font-size: 18px;
+        line-height: 25px;
+    }
     @media (max-width: 768px) {
         margin: 10px 0 20px;
         font-size: 16px;
         line-height: 23px;
     }
-    @media (max-width: 992px) {
-        margin: 14px 0 24px;
-        font-size: 18px;
-        line-height: 25px;
+    @media (max-width: 600px) {
+        margin: 8px 0 14px;
+        font-size: 16px;
+        line-height: 23px;
     }
 `
 const BlogItemDate = styled.span`
@@ -116,7 +137,10 @@ const Drop = styled.span`
     height: 21px;
     display: inline-block;
     background-color: #000000;
-    margin: 0 25px;
+    margin: 0 20px;
+    @media (max-width: 600px) {
+        margin: 0 10px;
+    }
     @media (max-width: 768px) {
         margin: 0 15px;
     }
