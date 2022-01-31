@@ -1,4 +1,4 @@
-// const Joi = require('joi');
+const Joi = require('joi');
 const mongoose = require('mongoose');
 const { tagSchema } = require('./Tag')
 const ArticleSchema = mongoose.model('Article', new mongoose.Schema({
@@ -20,8 +20,8 @@ const ArticleSchema = mongoose.model('Article', new mongoose.Schema({
 function validateArticle(article) {
     const schema = {
         name: Joi.string().min(3).required(),
-        slug: Joi.string().required(),
-        tagId: Joi.string().required(),
+        slug: Joi.string(),
+        tags: Joi.array().required(),
         description: Joi.string().min(10).required(),
     };
     return Joi.validate(article, schema);
