@@ -1,4 +1,4 @@
-import axios from 'axios';
+import http from '../../services/http';
 import { useState, useEffect } from 'react';
 import { Title, Label, Input, TextArea, MultipleSelect, SubmitButton } from './Article.style';
 const Article = () => {
@@ -6,7 +6,7 @@ const Article = () => {
     const [tagList, setTagList] = useState([]);
     const [details, setDetails] = useState(initialData);
     const getTagList = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/tags`).then((res) => {
+        http.get(`${process.env.REACT_APP_BASE_URL}/tags`).then((res) => {
             setTagList(res.data)
         })
     }
@@ -28,7 +28,7 @@ const Article = () => {
         if (name.trim() || description.trim()) {
             const tags = tag.map(item => item.value)
             const newObj = { name, description, tags }
-            axios.post(`${process.env.REACT_APP_BASE_URL}/article`, newObj).then((res) => {
+            http.post(`/article`, newObj).then((res) => {
                 if (res.data.success) {
                     setDetails(initialData)
                 }
@@ -45,7 +45,7 @@ const Article = () => {
         return { value: item, label: item.title }
     })
     return (
-        <div>
+        <>
             <Title>add article</Title>
             <form onSubmit={submitHandler}>
                 <div>
@@ -64,6 +64,6 @@ const Article = () => {
                 </div>
                 <SubmitButton onClick={submitHandler}>Submit</SubmitButton>
             </form>
-        </div>);
+        </>);
 };
 export default Article;

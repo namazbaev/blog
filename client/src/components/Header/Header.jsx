@@ -1,53 +1,49 @@
-import { Link } from 'react-router-dom';
-import { Container, Content, Nav, NavListWrap, NavList, User } from './Header.style'
+import http from '../../services/http';
+import { useState, useEffect } from 'react';
+import { navbarRoute } from '../../utils/json';
+import { Outlet, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUser, login, logout } from '../../redux/actions/authAction'
+import { Container, Content, Nav, Link, NavListWrap, NavList } from './Header.style'
 const Header = () => {
+    const location = useLocation();
+    const dispatch = useDispatch();
+    const token = localStorage.getItem('token')
+    const user = useSelector(state => state.user);
+    const isLogged = useSelector(state => state.user.isLogged);
+    const [active, setActive] = useState(location.pathname);
+    const userMe = () => {
+        http.get('/user/me').then((res) => {
+            dispatch(getUser({
+                data: res.data,
+                isLogged: true
+            }))
+        })
+    }
+    const signOut = () => {
+        dispatch(logout())
+        localStorage.clear()
+    }
+    useEffect(() => {
+        if (token) {
+            userMe()
+        }
+    }, []);
     return (
-        <Container>
-            <Content>
-                {/* <Logo>
-                    <a href="/home">
-                        <img src="/images/home-logo.svg" alt="home-logo" />
-                    </a>
-                </Logo> */}
-                <Nav>
-                    <NavListWrap>
-                        <NavList>
-                            <Link to='/'><span>Home</span></Link>
-                        </NavList>
-                        <NavList>
-                            <Link to='/article'><span>blogs</span></Link>
-                        </NavList>
-                        <NavList>
-                            <Link to='/tags'><span>Tags</span></Link>
-                        </NavList>
-                        <NavList>
-                            <a><span>business</span></a>
-                        </NavList>
-                        <NavList>
-                            <a><span>tech</span></a>
-                        </NavList>
-                        <NavList>
-                            <a><span>culture</span></a>
-                        </NavList>
-                        <NavList>
-                            <a><span>sport</span></a>
-                        </NavList>
-                        <NavList>
-                            <a><span>tourism</span></a>
-                        </NavList>
-                        <User>
-                            <a>
-                                {/* {user && user.photoURL ? <img src={user.photoURL} alt="nav-user" /> : <img src="/images/user.svg" alt="nav-user" />} */}
-                                <span>Me
-                                    {/* <img src="/images/down-icon.svg" alt="nav-down" /> */}
-                                </span>
-                            </a>
-                        </User>
-                    </NavListWrap>
-                </Nav>
-            </Content>
-        </Container>
+        <>
+            <Container>
+                <Content>
+                    <Nav>
+                        <NavListWrap>
+                            {navbarRoute.map(({ id, path, title }) =>
+                                <NavList key={id}><Link onClick={() => setActive(path)} active={active === path} to={path}>{title}</Link></NavList>)}
+                            <NavList key={55}><Link onClick={signOut} to='/login'>{user?.isLogged ? "Logout" : 'Login'}</Link></NavList>
+                        </NavListWrap>
+                    </Nav>
+                </Content>
+            </Container>
+            <Outlet />
+        </>
     )
 }
-
 export default Header

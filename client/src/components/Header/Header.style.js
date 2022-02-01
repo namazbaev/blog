@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom';
 
 const Container = styled.div`
   background-color: #fff;
@@ -54,52 +55,17 @@ const NavListWrap = styled.ul`
     }
   }
 `
-const NavList = styled.li`
+const NavList = styled.div`
   display: flex;
   align-items: center;
-  a {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    text-transform: uppercase;
-    flex-direction: column;
-    justify-content: center;
-    background: transparent;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 1.5;
-    min-height: 42px;
-    min-width: 80px;
-    position: relative;
-    text-decoration: none;
-    span {
-      color: rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-    }
-    @media (max-width: 768px) {
-      min-width: 70px;
-    }
-  }
-  &:hover,
-  &:active {
-    a {
-      span {
-        color: rgba(0, 0, 0, 0.9);
-      }
-    }
-  }
 `
-const SignOut = styled.div`
-  position: absolute;
-  top: 45px;
-  background: #fff;
-  border-radius: 0 0 5px 5px;
-  width: 100px;
-  height: 40px;
-  transition-duration: 167ms;
-  text-align: center;
-  display: none;
+const Link = styled(NavLink)`
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 500;
+  margin: 0 25px;
+  color: ${({ active }) => (active ? "rgba(0, 0, 0, 0.9)" : "rgba(0, 0, 0, 0.6)")};
 `
 const User = styled(NavList)`
   a > svg {
@@ -115,46 +81,6 @@ const User = styled(NavList)`
     display: flex;
     align-items: center;
   }
-  &:hover {
-    ${SignOut} {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-`
-const Work = styled(User)`
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
-`
-const Try = styled.li`
-  display: flex;
-  align-items: center;
-  a {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    background: transparent;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 18px;
-    min-height: 42px;
-    max-width: 100px;
-    text-align: center;
-    text-decoration: none;
-    span {
-      color: #5d3b09;
-      display: flex;
-      align-items: center;
-    }
-    @media (max-width: 768px) {
-      min-width: 70px;
-    }
-  }
-  &:hover {
-    text-decoration: underline;
-  }
 `
 
-export { Container, Content, Logo, Nav, NavListWrap, NavList, User, Work, Try, SignOut }
+export { Container, Content, Logo, Nav, NavListWrap, NavList, Link, User }

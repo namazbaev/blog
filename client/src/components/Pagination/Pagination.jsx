@@ -1,5 +1,4 @@
 import _ from 'lodash';
-
 import { PaginationList, PageItem } from './Pagination.style'
 const Pagination = ({ count, pageSize, currentPage, onChangePage, getArticles }) => {
     const pageCount = count / pageSize;

@@ -1,15 +1,16 @@
-import axios from 'axios';
 import moment from 'moment';
-import { LinkView } from '../AllStyle'
+import http from '../../services/http';
+import { Footer } from '../../components/';
 import { useState, useEffect } from 'react';
+import { LinkView } from '../../components/AllStyle';
 import {
     HeadWrapper, BlogItemWrapper, BlogItem, BlogItemTitle, BlogItemHead,
-    BlogItemDate, BlogItemTag, Drop, Description, BlogBottom
+    BlogItemDate, BlogItemTag, Drop, Description, BlogBottom, Container
 } from '../Blog/Blog.style';
 const Home = () => {
     const [articles, setArticles] = useState([]);
     const getArticles = () => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/article`).then((res) => {
+        http.get(`/article`).then((res) => {
             setArticles(res.data.result.list)
         })
     }
@@ -37,6 +38,7 @@ const Home = () => {
                     )
                 }) : 'Oopss!'}
             </BlogItemWrapper>
+            <Footer />
         </>
     );
 };

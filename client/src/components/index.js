@@ -1,9 +1,10 @@
-import Blog from './Blog/Blog';
-import Tags from './Tags/Tags';
-import Home from './Home/Home';
+import Tags from '../pages/Tags/Tags';
+import Login from '../pages/Login/Login';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
-import BlogView from './Blog/BlogView';
-import Article from './Article/Article';
+import Article from '../pages/Article/Article';
+import Politics from '../pages/Politics/Politics';
+import NotFound from '../pages/NotFound/NotFound';
+import Register from '../pages/Register/Register';
 import Pagination from './Pagination/Pagination';
-export { Home, Tags, Footer, Blog, BlogView, Article, Header, Pagination }
+export { Tags, Login, NotFound, Politics, Footer, Article, Header, Register, Pagination }

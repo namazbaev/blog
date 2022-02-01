@@ -1,5 +1,5 @@
-import axios from 'axios';
 import moment from 'moment';
+import http from '../../services/http';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -11,8 +11,8 @@ const BlogView = () => {
   const [current, setCurrent] = useState({});
   const [loading, setLoading] = useState(false);
   const getByArticle = id => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}/article/${id}`).then((res) => {
-      setCurrent(res.data.data)
+    http.get(`/article/${id}`).then((res) => {
+      setCurrent(res.data.result)
     }).finally(() => {
       setLoading(false)
     }).catch(() => {
