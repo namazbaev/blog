@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is blog site",
   "main": "index.js",
-  "author": "Shakxzod",
+  "author": "Shakxzod Namazbaev",
   "license": "MIT",
   "scripts": {
     "start": "node index.js"
