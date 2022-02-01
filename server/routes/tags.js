@@ -18,7 +18,11 @@ router.post('/', async (req, res) => {
         slug: slug
     })
     tag = await tag.save();
-    res.status(201).send(tag)
+    res.status(201).json({
+        result: tag,
+        success: true,
+        message: 'Succesfully saved new tag!'
+    })
 })
 router.put('/:id', async (req, res) => {
     const { title, slug } = req.body
@@ -44,6 +48,9 @@ router.delete('/:id', async (req, res) => {
     if (!tag) {
         return res.status(400).send(`Berilgan ID ${req.params.id} bo'yicha ma'lumot topilmadi!`)
     }
-    res.status(200).send(`Muvaffaqqiyatli o'chirildi!`)
+    res.status(200).json({
+        success: true,
+        message: 'Successfully deleted tag',
+    })
 })
 module.exports = router;

@@ -26,18 +26,5 @@ function validateArticle(article) {
     };
     return Joi.validate(article, schema);
 }
-
-async function createArticle() {
-    const article = new ArticleSchema({
-        name: 'Yangiliklar',
-        slug: 'news',
-        tags: '61f64df054144b82f80333d7',
-        // created_at: Date.now,
-        description: 'lorem ipsum wr wer werwer'
-    })
-    const savedArticle = await article.save();
-    console.log(savedArticle);
-}
-
 exports.Article = ArticleSchema;
 exports.validate = validateArticle;
