@@ -8,13 +8,13 @@ const authRoute = require('./routes/auth');
 const articleRoute = require('./routes/article');
 const config = require('config');
 const app = express();
+require('./production/prod')(app)
 dotenv.config();
 
 if (!config.get('jwtPrivateKey')) {
     console.log(`jwtPrivateKey not found!`);
     process.exit(1);
 }
-
 // connect to db
 mongoose.connect(process.env.MONGOSE_URL, {
     useNewUrlParser: true
