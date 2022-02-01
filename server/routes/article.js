@@ -1,6 +1,9 @@
-const { Article, validate } = require('../models/Article');
+const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
+const admin = require('../middleware/role');
+const { Article, validate } = require('../models/Article');
 
 // get all article
 router.get('/', async (req, res) => {
@@ -20,32 +23,27 @@ router.get('/', async (req, res) => {
 //     const searchField = req.query.name;
 //     Article.find({ name: { $regex: searchField, $options: `$i` } }).then((data) => res.send(data))
 // })
+
+
 // cretae article
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const { error } = validate(req.body);
-    const { name, slug, description, tags } = req.body
-    console.log('req.body', req.body);
     if (error) {
         return res.status(422).json({
             message: error.details[0].message,
             success: false
         })
     }
-    let article = new Article({
-        name: name,
-        slug: slug,
-        tags: tags,
-        description: description
-    })
+    let article = new Article(_.pick(req.body, ['name', 'slug', 'tags', 'description']))
     article = await article.save();
     res.status(201).json({
-        data: article,
         success: true,
+        result: article,
         message: "Successfully saved!",
     })
 })
 // update article by id
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     const { name, slug, description, tags } = req.body;
     const article = await Article.findByIdAndUpdate(req.params.id, {
         name: name,
@@ -57,25 +55,25 @@ router.put('/:id', async (req, res) => {
         return res.status(404).send(`No suitable article found for sent ID ${req.params.id}!`);
     }
     res.status(200).json({
-        data: article,
         success: true,
+        result: article,
         message: 'Successfully updated!'
     })
 })
 
 // get one article
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
     const article = await Article.findById(req.params.id);
     if (!article) {
         return res.status(404).send(`No suitable article found for sent ID ${req.params.id}!`);
     }
     res.status(200).json({
-        data: article,
         success: true,
+        result: article,
     })
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
     const article = await Article.findByIdAndRemove(req.params.id);
     if (!article) {
         return res.status(404).send(`No suitable article found for sent ID ${req.params.id}!`);
