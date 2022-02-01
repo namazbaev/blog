@@ -2,6 +2,7 @@ import moment from 'moment';
 import http from '../../services/http';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { ARTICLE } from '../../utils/routes';
 import {
   BlogItemWrapper, BlogItem, BlogItemTitle, BlogItemHead,
   BlogItemDate, BlogItemTag, Drop, Description, BlogBottom
@@ -11,7 +12,7 @@ const BlogView = () => {
   const [current, setCurrent] = useState({});
   const [loading, setLoading] = useState(false);
   const getByArticle = id => {
-    http.get(`/article/${id}`).then((res) => {
+    http.get(`${ARTICLE}/${id}`).then((res) => {
       setCurrent(res.data.result)
     }).finally(() => {
       setLoading(false)

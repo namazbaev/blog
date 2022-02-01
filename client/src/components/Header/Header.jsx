@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { navbarRoute } from '../../utils/json';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUser, login, logout } from '../../redux/actions/authAction'
+import { getUser, logout } from '../../redux/actions/authAction'
 import { Container, Content, Nav, Link, NavListWrap, NavList } from './Header.style'
 const Header = () => {
     const location = useLocation();

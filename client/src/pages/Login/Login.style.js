@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from 'react-router-dom';
 const Title = styled.h1`
     margin: 0;
     color: #21243D;
@@ -115,4 +115,9 @@ const RegisterTo = styled.span`
     font-size: 16px;
     margin-top: 15px;
 `
-export { Title, Input, Wrap, SubmitButton, RegisterTo }
+const Register = styled(Link)`
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+`
+export { Title, Input, Wrap, SubmitButton, Register, RegisterTo }

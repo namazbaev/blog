@@ -1,5 +1,6 @@
 import http from '../../services/http';
 import { useState, useEffect } from 'react';
+import { ARTICLE } from '../../utils/routes'
 import { Title, Label, Input, TextArea, MultipleSelect, SubmitButton } from './Article.style';
 const Article = () => {
     const initialData = { name: '', description: '', tag: [] }
@@ -20,15 +21,11 @@ const Article = () => {
 
     const submitHandler = e => {
         e.preventDefault();
-        if (!e.target.checkValidity()) {
-            // setError(true);
-            return;
-        }
         const { name, description, tag } = details
         if (name.trim() || description.trim()) {
             const tags = tag.map(item => item.value)
             const newObj = { name, description, tags }
-            http.post(`/article`, newObj).then((res) => {
+            http.post(ARTICLE, newObj).then((res) => {
                 if (res.data.success) {
                     setDetails(initialData)
                 }

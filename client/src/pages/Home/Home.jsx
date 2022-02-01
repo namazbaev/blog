@@ -3,14 +3,15 @@ import http from '../../services/http';
 import { Footer } from '../../components/';
 import { useState, useEffect } from 'react';
 import { LinkView } from '../../components/AllStyle';
+import { BLOG, ARTICLE } from '../../utils/routes';
 import {
     HeadWrapper, BlogItemWrapper, BlogItem, BlogItemTitle, BlogItemHead,
-    BlogItemDate, BlogItemTag, Drop, Description, BlogBottom, Container
+    BlogItemDate, BlogItemTag, Drop, Description, BlogBottom
 } from '../Blog/Blog.style';
 const Home = () => {
     const [articles, setArticles] = useState([]);
     const getArticles = () => {
-        http.get(`/article`).then((res) => {
+        http.get(ARTICLE).then((res) => {
             setArticles(res.data.result.list)
         })
     }
@@ -26,13 +27,13 @@ const Home = () => {
                 {articles.length ? articles.map(({ name, _id, created_at, tags, description }) => {
                     return (
                         <BlogItem key={_id}>
-                            <LinkView to={`/blog/${_id}`}><BlogItemTitle>{name}</BlogItemTitle></LinkView>
+                            <LinkView to={`${BLOG}/${_id}`}><BlogItemTitle>{name}</BlogItemTitle></LinkView>
                             <BlogItemHead>
                                 <BlogItemDate>{moment(created_at).format('ll')}</BlogItemDate>
                                 <Drop />
                                 <BlogItemTag>{tags.map(item => item.title).join(', ')}</BlogItemTag>
                             </BlogItemHead>
-                            <Description>{description}</Description>
+                            <Description>{description.substring(0, 300)}</Description>
                             <BlogBottom />
                         </BlogItem>
                     )

@@ -3,7 +3,7 @@ import Select from 'react-select';
 
 const Title = styled.h1`
     margin: 0;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     font-weight: bold;
     font-size: 44px;
     line-height: 60px;

@@ -6,7 +6,6 @@ const initialData = {
 const userReducer = (state = initialData, action) => {
     const type = action.type;
     const payload = action.payload;
-    console.log('payload', payload);
     switch (type) {
         case LOGIN:
             return {

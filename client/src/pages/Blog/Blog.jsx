@@ -3,6 +3,7 @@ import { LinkView } from '../../components/AllStyle'
 import http from '../../services/http';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { ADD_ARTICLE } from '../../utils/routes';
 import {
     HeadWrapper, Title, AddButton, BlogItemWrapper, BlogItem, BlogItemTitle, BlogItemHead,
     BlogItemDate, BlogItemTag, Drop, Description, BlogBottom
@@ -28,7 +29,7 @@ const Blog = () => {
         <>
             <HeadWrapper>
                 <Title>Blog</Title>
-                <Link to='/article/add'><AddButton>add Blog</AddButton></Link>
+                <Link to={ADD_ARTICLE}><AddButton>add Blog</AddButton></Link>
             </HeadWrapper>
             <BlogItemWrapper>
                 {Object.entries(articles).length ? articles.list.map(({ name, _id, created_at, tags, description }) => {
@@ -47,7 +48,7 @@ const Blog = () => {
                     )
                 }) : 'Oopss!'}
             </BlogItemWrapper>
-            {count > 1 && <Pagination count={count} pageSize={pageSize} onChangePage={onChangePage} getArticles={getArticles} currentPage={currentPage} />}
+            {count > 3 && <Pagination count={count} pageSize={pageSize} onChangePage={onChangePage} getArticles={getArticles} currentPage={currentPage} />}
         </>);
 };
 

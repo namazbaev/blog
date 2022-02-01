@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 const Title = styled.h1`
     margin: 0;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     font-weight: bold;
-    font-size: 44px;
+    font-size: ${({ isSlug }) => (isSlug ? "35px" : "44px")};
     line-height: 60px;
     color: #21243D;
+    margin-top: ${({ isSlug }) => (isSlug ? "50px" : "0")};
     text-transform: capitalize;
     @media (max-width: 992px) {
         font-size: 40px;
@@ -117,4 +118,46 @@ const SubmitButton = styled.button`
         font-size: 12px;
     }
 `
-export { Title, Label, Input, SubmitButton }
+const List = styled.ul`
+    margin-top: 0;
+    height: 60vh;
+    overflow-y: auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`
+const ListItem = styled.li`
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    padding: 5px 20px 0;
+    border-radius: 5px;
+    align-items: center;
+    transition: all 0.2s ease;
+    background-color: #f6f6f6e1;
+    justify-content: space-between;
+    &:not(:last-child){
+        margin-bottom: 5px;
+    }
+    &:hover{
+        background-color: #f0f0f4;
+    }
+`
+const ListItemLink = styled.a`
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+`
+const ListItemText = styled.p`
+    font-size: 16px;
+    margin: 0 0 10px;
+    color: rgba(0, 0, 0, 0.9);
+`
+const Slug = styled.span`
+    font-size: 14px;
+    display: block;
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.45);
+`
+export { Title, Label, Input, SubmitButton, List, ListItemLink, ListItem, ListItemText, Slug }

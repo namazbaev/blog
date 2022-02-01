@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import http from '../../services/http';
+import { LOGIN } from '../../utils/routes';
 import { useNavigate } from 'react-router-dom';
 import { Title, Input, Wrap, Login, LoginTo, SubmitButton } from './Register.style';
 const Register = () => {
@@ -19,11 +20,10 @@ const Register = () => {
             const newObj = { name, email, password }
             http.post(`/user`, newObj).then((res) => {
                 if (res.data.success) {
-                    navigate('/login')
+                    navigate(LOGIN)
                 }
             }).catch((e) => {
                 const { response } = e
-                console.log(response.data);
                 alert(response?.data?.message)
             })
         }
